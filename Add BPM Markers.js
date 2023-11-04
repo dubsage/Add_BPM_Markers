@@ -3,11 +3,10 @@ function createUI() {
     window.alignChildren = "left";
 	
     var intervalGroup = window.add("group");
-    intervalGroup.add("statictext", undefined, "BPM:");
-	
     var checkboxFR = intervalGroup.add("checkbox", undefined, "Привязать к фреймрэйту?");
     checkboxFR.value = true;
 	
+    intervalGroup.add("statictext", undefined, "BPM:");
     var intervalInput = intervalGroup.add("edittext", undefined, "140");
     intervalInput.characters = 4;
 	
@@ -29,13 +28,12 @@ function createUI() {
 	    
         for (i = 0; i < count; i++) {
 	    var markerTime = i * beatsPerSecond;
-	    if (checkboxFR.value)
-	    {
-	        markerTime = (Math.round(markerTime * frameRate))/frameRate;
+	    if (checkboxFR.value) {
+	            markerTime = (Math.round(markerTime * frameRate))/frameRate;
 	    }
             layer.property("ADBE Marker").setValueAtTime(markerTime, new MarkerValue(i + 1));
         }
-	window.close();
+        window.close();
     };	
     window.show();
 }
